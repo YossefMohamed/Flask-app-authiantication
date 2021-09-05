@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="static/index.css" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .name {
+      display: block;
+      height: 20px;
+      padding: 5px 5px;
+      width: 50%;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      height: 40vh;
+    }
+    form * {
+      margin: 1rem 0;
+    }
+    .flex {
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(42, 41, 41, 0.993);
+      color: white;
+    }
+    .flex-h2 {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(42, 41, 41, 0.993);
+      color: white;
+      padding: 2rem;
+      margin-top: auto;
+      margin-bottom: 0 !important;
+      align-items: center;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    .flex-h2 a {
+      color: rgb(93, 93, 230);
+      text-decoration: underline;
+      margin: 0 10px;
+    }
+    .flex-h1 {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row !important;
+      justify-content: space-around;
+      height: min-content;
+    }
+    h5 {
+      width: 30%;
+      border: 3px solid goldenrod;
+      flex-grow: 1;
+
+      font-size: 1rem;
+      margin: 0;
+      padding: 10px 5px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <h1 center>Helllo It's My First Flask APP</h1>
+
+    {% for mess in get_flashed_messages() %}
+
+    <h1>{{ mess }}</h1>
+
+    {% endfor %} {% if not session.name %}
+    <form method="POST">
+      {{form.hidden_tag()}}
+      {{form.email.label()}}{{form.email(class="name",placeholder=form.email.description)}}
+      {{form.password.label()}}{{form.password(class="name",placeholder=form.password.description)}}
+      {{form.submit(class_="submit") }}
+    </form>
+    <h2 class="flex-h2">
+      {% endif %}
+      <br />
+      {% if session.name %}
+      <div>You are Registered {{ session.name }}</div>
+      <a href="/logout" center>logout</a> {% else %}
+      <div>You are not Register.</div>
+      <a href="/signup" center>Signup</a>{% endif %}
+    </h2>
+  </body>
+  <script></script>
+</html>
